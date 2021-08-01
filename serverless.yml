@@ -1,0 +1,27 @@
+org: danicar
+app: lawgile-challenge-api
+service: lawgile-challenge-api
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: '20201221'
+
+plugins:
+  - serverless-express
+
+functions:
+  start:
+    handler: handler.start
+    events:
+      - http:
+          path: /graphql
+          method: post
+          cors:
+            origin: '*'
+            headers: 
+              - Content-Type
+              - Access-Control-Allow-Origin
+            allowCredentials: false
